@@ -3,6 +3,9 @@ var mongoose = require("mongoose");
 var request = require("request");
 
 var app = express();
+
+var g = ["", "pretty", "small", "big", "normal","awesome","more"];
+
 //mongoose.connect("");
 mongoose.connect(process.env.MONGOLAB);
 
@@ -35,6 +38,8 @@ app.get("/imagesearch", function (request, response) {
 });
 
 app.get("/:url", function (req, response) {
+    var num = req.query.offset || 0;
+    var x = num%7;
     var theURL = req.params.url;
     console.log(theURL);
     var item = {
@@ -42,6 +47,7 @@ app.get("/:url", function (req, response) {
     };
     var data = new registerData(item);
     data.save();
+    theURL = theURL + " " + g[x];
     getJson(theURL, req, response);
 });
 
