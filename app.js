@@ -4,7 +4,7 @@ var request = require("request");
 
 var app = express();
 //mongoose.connect("");
-mongoose.connect("localhost:27017/imageLayer" || process.env.MONGOLAB);
+mongoose.connect(process.env.MONGOLAB);
 
 app.set("port", process.env.PORT || 3000);
 
