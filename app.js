@@ -4,7 +4,7 @@ var request = require("request");
 
 var app = express();
 //mongoose.connect("");
-mongoose.connect(process.env.MONGOLAB);
+mongoose.connect("Localhost:27017/imageLayer" || process.env.MONGOLAB);
 
 app.set("port", process.env.PORT || 3000);
 
@@ -55,8 +55,10 @@ function getJson(theURL, req, res) {
         method: "GET",
         json: true,
         uri: "https://www.googleapis.com/customsearch/v1?" +
-        "key=AIzaSyBcK-FE1LLq0EWlEGH9MXcpZZGorMJvBns&" +
-        "cx=001306122588374178248:hz_ino3ddnk&" +
+        // "key=AIzaSyBcK-FE1LLq0EWlEGH9MXcpZZGorMJvBns&" +
+        // "cx=001306122588374178248:hz_ino3ddnk&" +
+        "key=" + process.env.GOOGLEKEY +
+        "cx=" + process.env.GOOGLECX +
         "q=" + newURL +
         "&enableImageSearch=true&" +
         "disableWebSearch=true"
