@@ -3,8 +3,8 @@ var mongoose = require("mongoose");
 var request = require("request");
 
 var app = express();
-//mongoose.connect("localhost:27017/imageLayer");
-mongoose.connect(process.env.MONGOLAB || "localhost:27017/imageLayer");
+//mongoose.connect("");
+mongoose.connect("localhost:27017/imageLayer" || process.env.MONGOLAB);
 
 app.set("port", process.env.PORT || 3000);
 
@@ -16,7 +16,8 @@ var registerSchema = mongoose.Schema({
 var registerData = mongoose.model("registerData", registerSchema);
 
 app.get("/", function (req, response) {
-    response.send("Send a request in the form ");
+    response.send("Send a request in the form  https://api-04-image.herokuapp.com/cats%20and%20lions" +
+        " or  https://api-04-image.herokuapp.com/imagesearch");
 });
 
 app.get("/imagesearch", function (request, response) {
